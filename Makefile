@@ -7,13 +7,13 @@ GO_EASY_ON_ME = 1
 LDFLAGS += -Wl,-segalign,0x4000
 include $(THEOS)/makefiles/common.mk
 
-TWEAK_NAME = ZSwipeSelectionDelSoundFix
-ZSwipeSelectionDelSoundFix_FILES = Tweak.xm
-ZSwipeSelectionDelSoundFix_FRAMEWORKS = UIKit Foundation
+TWEAK_NAME = SwipeSelectionDelSoundFix
+SwipeSelectionDelSoundFix_FILES = Tweak.xm
+SwipeSelectionDelSoundFix_FRAMEWORKS = UIKit Foundation
 
-ZSwipeSelectionDelSoundFix_CFLAGS += -DVERBOSE
-ZSwipeSelectionDelSoundFix_LDFLAGS += -lAccessibility
-ZSwipeSelectionDelSoundFix_CFLAGS += -fobjc-arc
+SwipeSelectionDelSoundFix_CFLAGS += -DVERBOSE
+SwipeSelectionDelSoundFix_LDFLAGS += -lAccessibility
+SwipeSelectionDelSoundFix_CFLAGS += -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 include $(THEOS_MAKE_PATH)/aggregate.mk
