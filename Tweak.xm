@@ -5,35 +5,35 @@
 #import <UIKit/UIKit.h>
 
 @interface UIKBKey : NSObject
-@property(copy) NSString * representedString;
+@property(copy) NSString *representedString;
 @end
 
 @interface UIKeyboardLayout : UIView
--(UIKBKey*)keyHitTest:(CGPoint)point;
+- (UIKBKey *)keyHitTest:(CGPoint)point;
 @end
 
 @interface UIKeyboardLayoutStar : UIKeyboardLayout
--(id)keyHitTest:(CGPoint)arg1;
+- (UIKBKey *)keyHitTest:(CGPoint)arg1;
 @end
 
-
-
 %hook UIKeyboardLayoutStar
-- (void)playKeyClickSound { }
+- (void)playKeyClickSound { nil; }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *touch = [touches anyObject];
-
 	UIKBKey *keyObject = [self keyHitTest:[touch locationInView:touch.view]];
 	NSString *key = [[keyObject representedString] lowercaseString];
 	// NSLog(@"[GGGGG]  key=[%@]", key);
 
+	%orig;
 	if ([key isEqualToString:@"delete"]) {
-		%orig();
 		AudioServicesPlaySystemSound(1155);
-
-	} else{
-		%orig;
-	}
+ 	}
 }
-
 %end
+
+%ctor {
+	dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_MSEC));
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        %init;
+    });
+}
