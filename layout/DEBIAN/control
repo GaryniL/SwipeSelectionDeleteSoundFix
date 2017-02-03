@@ -1,0 +1,9 @@
+Package: tw.garynil.ZSwipeSelectionDelSoundFix
+Name: ZSwipeSelectionDelSoundFix
+Architecture: iphoneos-arm
+Description: A tweak fix short press delete key no sound while using SwipeSelection
+Homepage: https://garynil.tw
+Author: Gary niL
+Section: Tweaks
+Version: 1.0.0
+Maintainer: Gary Lin <garynil1635@gmail.com>
